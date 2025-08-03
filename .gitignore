@@ -1,0 +1,31 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# build output
+/dist
+/build
+/lib
+
+# testing
+/coverage
+*.log
+
+# local env
+.env
+.env.local
+.env.*.local
+
+# editor/IDE
+.vscode
+.idea
+.DS_Store
+
+# OS files
+Thumbs.db
+
+# optional package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
