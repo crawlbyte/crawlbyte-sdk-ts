@@ -1,6 +1,6 @@
 {
   "name": "@crawlbyte/crawlbyte-sdk-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Official TypeScript SDK for Crawlbyte – create tasks, poll results, and integrate data scraping into your JavaScript/TypeScript applications.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "axios": "^1.6.0",
+    "axios-retry": "^4.5.0",
     "dotenv": "^17.2.1"
   }
 }

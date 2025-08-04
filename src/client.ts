@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, Method } from "axios";
+import axiosRetry from "axios-retry";
 
 export class Client {
   private baseUrl: string;
@@ -16,6 +17,23 @@ export class Client {
         Authorization: apiKey,
         "Content-Type": "application/json",
         Accept: "application/json",
+      },
+    });
+
+    axiosRetry(this.axiosInstance, {
+      retries: 5,
+      retryDelay: axiosRetry.exponentialDelay,
+      retryCondition: (error: any): boolean => {
+        return (
+          axiosRetry.isNetworkError(error) ||
+          error.response?.status === 429 ||
+          error.response?.status >= 500
+        );
+      },
+      onRetry: (retryCount, error, requestConfig) => {
+        console.warn(
+          `Retrying request ${requestConfig.method} ${requestConfig.url} (${retryCount}) due to: ${error.message}!`
+        );
       },
     });
   }
